@@ -10,5 +10,6 @@ package Users;
  * @author Konnoke
  */
 public interface User {
+
     
 }
