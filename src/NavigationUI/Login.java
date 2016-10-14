@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package NavigationUI;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 /**
  *
  * @author Zarathustra
  */
 public class Login {
-    String Username = "yib5063";
-    String Password = "password";
+    String username = "yib5063";
+    String password = "password";
     String msg = " ";
+    
+    public static boolean authenticate(String username, String password)   {
+        return username.equals(username) && password.equals(password);
+    }
      
      
 }
