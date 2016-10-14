@@ -9,7 +9,7 @@ package Users;
  *
  * @author Zarathustra
  */
-public class Account implements User {
+public class Account {
 
     private String username;
     private String password;
