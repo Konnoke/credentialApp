@@ -76,9 +76,13 @@ public class LoginUI extends Login {
         
             @Override
             public void actionPerformed(ActionEvent e)  {
-                if (Login.authenticate(userText.getText(), passwordText.getText()))   {
-                    JOptionPane.showMessageDialog(null, "welcome");
-                } else {                                                        //the else statement wont run not sure why 
+                String user = userText.getText().trim();
+                String pass = passwordText.getText().trim();
+                Login login = new Login();
+                if (login.authenticate(user, pass))   {
+                    Menu menu = new Menu();
+                    menu.buildUI();
+                } else {                                                        
                     JOptionPane.showMessageDialog(null, "incorrect credentials");
                 }
             }
