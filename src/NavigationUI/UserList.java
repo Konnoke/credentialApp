@@ -15,8 +15,8 @@ public class UserList {
     
     
     
-    private ArrayList<String> usernames;
-    private ArrayList<String> passwords;
+    public ArrayList<String> usernames;
+    public ArrayList<String> passwords;
      
     
     public UserList ()   {

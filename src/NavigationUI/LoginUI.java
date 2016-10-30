@@ -29,16 +29,16 @@ public class LoginUI extends Login {
 
     public void buildUI()   {
         
-        JFrame frame = new JFrame("Login");
-        frame.setSize(400, 150);
-        frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame loginUI = new JFrame("Login");
+        loginUI.setSize(400, 150);
+        loginUI.setLocationRelativeTo(null);
+        loginUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel();
-        frame.add(panel);
+        loginUI.add(panel);
         LoginUI(panel);
 
-        frame.setVisible(true);        
+        loginUI.setVisible(true);   
     }    
     
        
@@ -86,6 +86,16 @@ public class LoginUI extends Login {
                     JOptionPane.showMessageDialog(null, "incorrect credentials");
                 }
             }
+        });
+        
+        registerButton.addActionListener(new ActionListener()   {
+            @Override
+            public void actionPerformed(ActionEvent z) {
+                RegisterUI reg = new RegisterUI();
+                reg.buildRegistry();
+            }
+            
+            
         });
         
     }
