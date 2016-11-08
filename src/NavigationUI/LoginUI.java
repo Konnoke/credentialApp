@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Hassan
+ * @author Hassan, Kevin
  */
 public class LoginUI extends Login {
     
@@ -80,8 +80,10 @@ public class LoginUI extends Login {
                 String pass = passwordText.getText().trim();
                 Login login = new Login();
                 if (login.authenticate(user, pass))   {
-                    Menu menu = new Menu();
-                    menu.buildUI();
+                    //Dashboard dashboard = new Dashboard();
+                    //dashboard.initComponents();
+                    //dashboard.buildUI();
+                    new Dashboard().setVisible(true);
                 } else {                                                        
                     JOptionPane.showMessageDialog(null, "incorrect credentials");
                 }

@@ -22,14 +22,13 @@ import javax.swing.JTextField;
  * @author Hassan
  */
 public class Menu {
-    
-    JTextField passwordText; 
+
+    JTextField passwordText;
     JTextField userText;
     JFrame menuUI;
-    
-    
-    public void buildUI()   {
-        
+
+    public void buildUI() {
+
         menuUI = new JFrame("HomePage");
         menuUI.setSize(400, 150);
         menuUI.setLocationRelativeTo(null);
@@ -39,40 +38,40 @@ public class Menu {
         menuUI.add(panel);
         LoginUI(panel);
 
-        menuUI.setVisible(true);        
-    }   
+        menuUI.setVisible(true);
+    }
 
-public void LoginUI(JPanel panel) {
-        
+    public void LoginUI(JPanel panel) {
+
         panel.setLayout(new FlowLayout());
 
         JButton viewAccount = new JButton("View Account");
         viewAccount.setBounds(10, 80, 100, 25);
-        panel.add(viewAccount); 
-        
+        panel.add(viewAccount);
+
         JButton viewCredentials = new JButton("View Credentials");
         viewCredentials.setBounds(10, 80, 100, 25);
         panel.add(viewCredentials);
-        
+
         JButton add = new JButton("Add Credentials");
         add.setBounds(10, 80, 100, 25);
-        panel.add(add);     
-                
+        panel.add(add);
+
         JButton logoutButton = new JButton("Logout");
         logoutButton.setBounds(10, 80, 100, 25);
         panel.add(logoutButton);
-        
-        logoutButton.addActionListener(new ActionListener()   {
-        
+
+        logoutButton.addActionListener(new ActionListener() {
+
             @Override
-            public void actionPerformed(ActionEvent e)  {
+            public void actionPerformed(ActionEvent e) {
 
                 menuUI.setVisible(false);
-                
+
             }
-        });  
-        
-        add.addActionListener(new ActionListener()    {
+        });
+
+        add.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent o) {
@@ -80,11 +79,7 @@ public void LoginUI(JPanel panel) {
                 add.buildUI();
             }
         });
-        
-        
-        
+
     }
-    
-    
-    
+
 }
