@@ -7,7 +7,12 @@ package NavigationUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.security.Key;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,9 +37,10 @@ public class RegisterUI extends Register {
 
         JPanel panel = new JPanel();
         regUI.add(panel);
+        //retKey=null;
         Register(panel);
 
-        regUI.setVisible(true);        
+        regUI.setVisible(true);  
     }   
     
     public void Register(JPanel panel) {
@@ -73,7 +79,13 @@ public class RegisterUI extends Register {
                 Register register = new Register();
                 String user = userText.getText().trim();
                 String pass = passwordText.getText().trim();
-                register.addUser(user, pass); 
+                try { 
+                    register.AppendXML(user, pass);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(RegisterUI.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(RegisterUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 regUI.dispose();
             }
                 

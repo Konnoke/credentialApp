@@ -6,6 +6,7 @@
 package NavigationUI;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -15,12 +16,18 @@ public class UserList {
     
     
     
+    public HashMap<String, String> users;
+    public User newUser;
+    String a;
+    String b;
     public ArrayList<String> usernames;
     public ArrayList<String> passwords;
      
     
     public UserList ()   {
         
+        users = new HashMap();
+        newUser = new User(a, b);
         usernames = new ArrayList();
         passwords = new ArrayList();
         
@@ -32,6 +39,23 @@ public class UserList {
         passwords.add("1234"); 
         passwords.add("123456");
         
+    }
+    
+    public void addUser(String a)   {
+        newUser.getUsername();
+        newUser.setUsername(a);
+        //users.add(newUser);
+    }
+    
+    public void add(String username, String password)   {
+        
+        a = username;
+        b = password;
+        
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        
+        //users.add(username, password);
     }
     
     public ArrayList<String> getUsernames()  {

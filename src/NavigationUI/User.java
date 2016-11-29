@@ -13,10 +13,27 @@ public class User {
     
     String username;
     String password;
+   
     
-    public User(String username, String password)  {
-        this.username=username;
-        this.password=password;
+    public User(String _username, String _password)  {
+        this.username = _username;
+        this.password = _password;
+    }
+    
+    public String getUsername()   {
+        return username;
+    }
+    
+    void setUsername(String _username)   {
+        this.username = _username;
+    }
+    
+    public String getPassword()    {
+        return password;
+    }
+    
+    public void setPassword(String _password)   {
+        this.password = _password;
     }
     
     

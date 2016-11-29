@@ -7,6 +7,7 @@ package NavigationUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.Key;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,8 +26,6 @@ public class LoginUI extends Login {
     JTextField passwordText; 
     JTextField userText;
 
-    
-
     public void buildUI()   {
         
         JFrame loginUI = new JFrame("Login");
@@ -38,7 +37,7 @@ public class LoginUI extends Login {
         loginUI.add(panel);
         LoginUI(panel);
 
-        loginUI.setVisible(true);   
+        loginUI.setVisible(true); 
     }    
     
        
@@ -79,7 +78,8 @@ public class LoginUI extends Login {
                 String user = userText.getText().trim();
                 String pass = passwordText.getText().trim();
                 Login login = new Login();
-                if (login.authenticate(user, pass))   {
+               
+                if (login.authenticate2(user, pass))   {
                     //Dashboard dashboard = new Dashboard();
                     //dashboard.initComponents();
                     //dashboard.buildUI();
@@ -93,7 +93,7 @@ public class LoginUI extends Login {
         registerButton.addActionListener(new ActionListener()   {
             @Override
             public void actionPerformed(ActionEvent z) {
-                RegisterUI reg = new RegisterUI();
+                RegisterUI reg= new RegisterUI();
                 reg.buildRegistry();
             }
             
