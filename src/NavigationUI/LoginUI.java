@@ -83,7 +83,7 @@ public class LoginUI extends Login {
                     //Dashboard dashboard = new Dashboard();
                     //dashboard.initComponents();
                     //dashboard.buildUI();
-                    new Dashboard().setVisible(true);
+                    new Dashboard2().setVisible(true);
                 } else {                                                        
                     JOptionPane.showMessageDialog(null, "incorrect credentials");
                 }

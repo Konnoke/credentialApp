@@ -59,39 +59,39 @@ public class Login extends Register {
         return false;
     }
     
-    public void setKey(String myKey) 
-    {
-        MessageDigest sha = null;
-        try {
-            key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
-            key = sha.digest(key);
-            key = Arrays.copyOf(key, 16); 
-            secretKey = new SecretKeySpec(key, "AES");
-        } 
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } 
-        catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public String decryptS(String strToDecrypt, String secret) 
-    {
-        try
-        {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("Error while decrypting: " + e.toString());
-        }
-        return null;
-    }
+//    public void setKey(String myKey) 
+//    {
+//        MessageDigest sha = null;
+//        try {
+//            key = myKey.getBytes("UTF-8");
+//            sha = MessageDigest.getInstance("SHA-1");
+//            key = sha.digest(key);
+//            key = Arrays.copyOf(key, 16); 
+//            secretKey = new SecretKeySpec(key, "AES");
+//        } 
+//        catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } 
+//        catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    
+//    public String decryptS(String strToDecrypt, String secret) 
+//    {
+//        try
+//        {
+//            setKey(secret);
+//            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+//            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+//            return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+//        } 
+//        catch (Exception e) 
+//        {
+//            System.out.println("Error while decrypting: " + e.toString());
+//        }
+//        return null;
+//    }
        
     public boolean authenticate2 (String username, String password)   {
         
@@ -126,9 +126,9 @@ public class Login extends Register {
             String decrypted_username=null;
             String decrypted_password=null;
 
-            String key_static="Hassan99993421!@";
-            decrypted_username=decryptS(u,key_static);
-            decrypted_password=decryptS(p,key_static);
+//            String key_static="Hassan99993421!@";
+//            decrypted_username=decryptS(u,key_static);
+//            decrypted_password=decryptS(p,key_static);
 
             //PrintWriter out2 = new PrintWriter("file3.txt");
             //out2.println(decrypted_username);
@@ -139,7 +139,7 @@ public class Login extends Register {
             //System.err.println(decrypted_password);
 
             //************* END DECRYP PHASE
-            if (decrypted_username.equals(username) && decrypted_password.equals(password)) {
+            if (u.equals(username) && p.equals(password)) {
                return true;
             }
          }

@@ -79,13 +79,7 @@ public class RegisterUI extends Register {
                 Register register = new Register();
                 String user = userText.getText().trim();
                 String pass = passwordText.getText().trim();
-                try { 
-                    register.AppendXML(user, pass);
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(RegisterUI.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(RegisterUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                register.AppendXML(user, pass);
                 regUI.dispose();
             }
                 

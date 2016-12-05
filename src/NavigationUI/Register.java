@@ -6,11 +6,8 @@
 package NavigationUI;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -20,15 +17,11 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -55,47 +48,47 @@ public class Register extends Encryption {
       
     }
     
-    public void setKey(String myKey) 
-    {
-        MessageDigest sha = null;
-        try {
-            key = myKey.getBytes("UTF-8");
-            sha = MessageDigest.getInstance("SHA-1");
-            key = sha.digest(key);
-            key = Arrays.copyOf(key, 16); 
-            secretKey = new SecretKeySpec(key, "AES");
-        } 
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } 
-        catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }   
-    public String encryptS(String strToEncrypt, String secret) 
-    {
-        try
-        {
-            setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("Error while encrypting: " + e.toString());
-        }
-        return null;
-    }
+//    public void setKey(String myKey) 
+//    {
+//        MessageDigest sha = null;
+//        try {
+//            key = myKey.getBytes("UTF-8");
+//            sha = MessageDigest.getInstance("SHA-1");
+//            key = sha.digest(key);
+//            key = Arrays.copyOf(key, 16); 
+//            secretKey = new SecretKeySpec(key, "AES");
+//        } 
+//        catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } 
+//        catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//    }   
+//    public String encryptS(String strToEncrypt, String secret) 
+//    {
+//        try
+//        {
+//            setKey(secret);
+//            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+//            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+//            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+//        } 
+//        catch (Exception e) 
+//        {
+//            System.out.println("Error while encrypting: " + e.toString());
+//        }
+//        return null;
+//    }
         
-    public void AppendXML(String text, String key) throws UnsupportedEncodingException, FileNotFoundException  {
+    public void AppendXML(String text, String key)  {
         
-        String username = null;
-        String password = null;
+        String username = text;
+        String password = key;
 
-        String key_static="Hassan99993421!@";
-        username=encryptS(text,key_static);
-        password=encryptS(key,key_static);
+//        String key_static="Hassan99993421!@";
+//        username=encryptS(text,key_static);
+//        password=encryptS(key,key_static);
         //PrintWriter out = new PrintWriter("file1.txt");
         //out.println(username);
         //out.println(password);
@@ -112,8 +105,8 @@ public class Register extends Encryption {
            Node user = doc.getFirstChild();
            //Node newUser = user.appendChild(doc.createElement("Account"));
            Element u = doc.createElement("Account");
-           u.setAttribute("UserID", username);
-           u.setAttribute("PasswordID", password);
+           u.setAttribute("UserID", text);
+           u.setAttribute("PasswordID", key);
            user.appendChild(u);
 
            //newUser.setAttribute(username, password);
