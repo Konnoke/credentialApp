@@ -17,7 +17,8 @@ public class CredentialList extends AbstractTableModel {
 
     //public ArrayList<String> usernames;
     private List<Credential> list = new ArrayList<Credential>();
-    private String[] columnNames = {"Website/Application", "Username", "Password", "Last edit"};
+    private String[] columnNames = {"Website/Application", "Username", "Password"};
+    private String[] row[] = {{"Lionpath","abc123","password"}};
 
     public void setList(List<Credential> list) {
         this.list = list;
@@ -47,4 +48,11 @@ public class CredentialList extends AbstractTableModel {
                 return null;
         }
     }
+
+    void add(Object object, String[] split) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
 }

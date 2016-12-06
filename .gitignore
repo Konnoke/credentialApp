@@ -1,2 +1,7 @@
 /nbproject/private/
 /build/
+/dist/
+/test/NavigationUI/TestContact.java
+/test/NavigationUI/StudentTableModel.java
+/test/NavigationUI/Student.java
+/test/NavigationUI/FileToJTable.java

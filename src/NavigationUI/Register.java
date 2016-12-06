@@ -20,7 +20,7 @@ import org.w3c.dom.Node;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Base64;
+//import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
  *
  * @author Hassan
  */
-public class Register extends Encryption {
+public class Register {
     
     public UserList userList;
     private static SecretKeySpec secretKey;

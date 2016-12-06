@@ -10,7 +10,7 @@ import java.security.Key;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-import java.util.Base64;
+//import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -18,6 +18,7 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * @author Hassan
  */
+/*
 public class Encryption {
     
     
@@ -84,3 +85,4 @@ public class Encryption {
         //app.decrypt(text, "1234567891234567", e);
     }    
 }
+*/
