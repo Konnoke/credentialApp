@@ -11,9 +11,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,33 +20,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Attr;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 /**
  *
  * @author Zarathustra
  */
-public class Dashboard3 extends javax.swing.JFrame{
+public class Dashboard4 extends LoginUI {
     
     private static final int FRAME_WIDTH = 900;
     private static final int FRAME_HEIGHT = 400;
     static JTable tableCredential;
     static int ID = 0;
+    String user;
     
-    public Dashboard3() {
+    public void Dashboard4() {
         initComponents();
         
     }
@@ -72,6 +55,20 @@ public class Dashboard3 extends javax.swing.JFrame{
         final JButton buttonExit = new JButton("Exit");
         buttonExit.setBounds(200, 325, 100, 20);
         buttonPanel.add(buttonExit);
+        
+        
+        // Set up of columns in the table
+        String[] columns = { "ID", "Website", "Username", "Password" };
+        // Set up of the table with the appropriate column headers
+        final DefaultTableModel model = new DefaultTableModel(null, columns);
+        final JTable credentialTable = new JTable();
+        credentialTable.setModel(model);
+        JScrollPane scrollPane = new JScrollPane(credentialTable);
+        scrollPane.setBounds(300, 20, 550, 300);
+        buttonPanel.add(scrollPane);        
+        
+        
+        String userName = LoginUI.user;
 
         // Method for exit button
         buttonExit.addActionListener(new ActionListener() {
@@ -92,79 +89,36 @@ public class Dashboard3 extends javax.swing.JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
             String text = "hey";
-            String key = "boo";
-            try {	
-                String filepath = ("C:\\Users\\Hassan\\Documents\\GitHub\\credentialApp\\test.xml");
-                DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-                Document doc = dBuilder.parse(filepath);
-                //doc.getDocumentElement().normalize();
-                Node user = doc.getFirstChild();
-                
-                
-                
-                System.out.println("root Element: " + doc.getDocumentElement().getNodeName());
-                Node n = doc.getElementsByTagName("pass").item(0);
-                if (n == null)   {
-                    System.out.println("fuck");
-                } else {
-                System.out.println(n.getNodeName());}
-               // for (int temp = 0; temp < n.getLength(); temp++)   {
-                    //Node nNode = n.item(temp);
-                    //System.out.println("current element " + nNode.getNodeName());
-                //}
+            String key = "boo";	
+            
 
-                //Element pls = doc.createElement("blue");                
-                //Node account = doc.getElementsByTagName("id").item(0).appendChild(pls);
-                //Element account = doc.getElementById("hassan");
-                //System.out.println("blue");
-                //Attr number = doc.createAttribute("username");
-                //number.setValue("test");
-                //account.setAttributeNode(number);
-                //System.out.println("blue");                
-                //number.appendChild(doc.createTextNode("1"));
-                //System.out.println("blue");                
-                //account.appendChild(number);
-                //System.out.println("blue");                
-                //Node newUser = user.appendChild(doc.createElement("Account"));
-                //Element u = doc.createElement("Account");
-                //u.setAttribute("UserID", text);
-                //u.setAttribute("PasswordID", key);
-                //user.appendChild(account); 
+                File filename = new File("credential.txt");
                 
-                
-                TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                Transformer transformer = transformerFactory.newTransformer();
-                DOMSource source = new DOMSource(doc);
-                StreamResult result = new StreamResult(new File("test.xml"));
-                transformer.transform(source, result);                   
-                
-            }catch(ParserConfigurationException | SAXException | IOException | DOMException ex) {
-            }   catch (TransformerException ex) {     
-                    Logger.getLogger(Dashboard3.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            System.out.println("did it work?");
-//                try{
-//
-//                    BufferedWriter bfw = new BufferedWriter(new FileWriter("credentialInfo.txt"));
-//
-//                      for (int i = 0 ; i < tableCredential.getRowCount(); i++)
-//                      {
-//
-//                        for(int j = 0 ; j < tableCredential.getColumnCount();j++)
-//                        {
-//                            bfw.newLine();
-//                            bfw.write((String)(tableCredential.getValueAt(i,j)));
-//                            bfw.write("\t");;
-//                        }
-//                      }
-//                      bfw.close();
-//            }catch(Exception ex) {
-//
-//                ex.printStackTrace();
-//            }
-            }
-        });
+                    try{    
+                        FileWriter fw = new FileWriter(filename);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                         for (int i = 0 ; i < model.getRowCount(); i++) {
+
+                            for(int j = 0 ; j < model.getColumnCount();j++)
+                        {
+                            ///System.out.println(model.getColumnName(j));
+                            bw.write(model.getColumnName(j));
+                            bw.write(": ");
+                            bw.write(model.getValueAt(i, j)+ " ");
+                            //System.out.println(model.getValueAt(i, j));
+                            //fw.write(tableCredential.getValueAt(i, j)+ " ");                           
+                        } 
+                           
+                      }
+                         bw.close();
+                     }
+                    catch(Exception ex){
+
+                    ex.printStackTrace();
+
+                    }           
+            }});            
+
         // Set up Load button and its location
         final JButton buttonLoad =  new JButton("Load");
         buttonLoad.setBounds(500, 325, 100, 20);
@@ -224,16 +178,6 @@ public class Dashboard3 extends javax.swing.JFrame{
         buttonPanel.add(textPassword);
 
 
-        // Set up of columns in the table
-        String[] columns = { "ID", "Website", "Username", "Password" };
-        // Set up of the table with the appropriate column headers
-        final DefaultTableModel model = new DefaultTableModel(null, columns);
-        final JTable credentialTable = new JTable();
-        credentialTable.setModel(model);
-        JScrollPane scrollPane = new JScrollPane(credentialTable);
-        scrollPane.setBounds(300, 20, 550, 300);
-        buttonPanel.add(scrollPane);
-
 
         // Save button methods, including validation checking
         buttonAdd.addActionListener(new ActionListener() {
@@ -268,8 +212,6 @@ public class Dashboard3 extends javax.swing.JFrame{
                 textWebsite.setText("");
                 textPassword.setText("");
 
-
-
             }
         });     
 
@@ -286,3 +228,5 @@ public class Dashboard3 extends javax.swing.JFrame{
     
     
 }
+        
+                

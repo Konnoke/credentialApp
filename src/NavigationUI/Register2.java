@@ -5,9 +5,10 @@
  */
 package NavigationUI;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Transformer;
@@ -17,11 +18,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-//import java.util.Base64;
-import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -33,21 +29,40 @@ import org.xml.sax.SAXException;
  *
  * @author Hassan
  */
-public class Register {
+public class Register2 {
     
     public UserList userList;
     private static SecretKeySpec secretKey;
     private static byte[] key;
-    File inputFile = new File("test.xml");   
+    File inputFile = new File("test.xml"); 
+ 
 
-    public void addUser(String username, String password)   {
+    
+    public void textFile (String username, String password)  {
         
-        //usernames = userList.getUsernames();
-        //passwords = userList.getValidPasswords();      
-        //usernames.add(username);
-        //passwords.add(password);
-      
-    }
+        String user = username;
+        File filename = new File(user + ".txt");
+        
+        if (filename.exists())   {
+            System.out.println("Username Already Exists");
+        } else  {            
+            try {
+                
+                FileWriter fw = new FileWriter(filename);
+                BufferedWriter bw = new BufferedWriter(fw);
+
+                bw.write("username: " + username + " ");
+                bw.write("password: " + password);
+
+                bw.close();
+
+                System.out.println("Done");                
+        } catch (IOException e)   {
+                e.printStackTrace();
+        }            
+        }        
+    }    
+    
     
 //    public void setKey(String myKey) 
 //    {

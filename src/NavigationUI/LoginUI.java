@@ -25,6 +25,7 @@ public class LoginUI extends Login {
     
     JTextField passwordText; 
     JTextField userText;
+    public static String user;
 
     public void buildUI()   {
         
@@ -75,15 +76,17 @@ public class LoginUI extends Login {
         
             @Override
             public void actionPerformed(ActionEvent e)  {
-                String user = userText.getText().trim();
+                user = userText.getText().trim();
                 String pass = passwordText.getText().trim();
-                Login login = new Login();
+                Login2 login = new Login2();
+                login.setUsername(user);
                
-                if (login.authenticate2(user, pass))   {
-                    //Dashboard dashboard = new Dashboard();
-                    //dashboard.initComponents();
+                if (login.authenticateTextFile(user, pass))   {
+                    Dashboard4 dashboard = new Dashboard4();
+                    dashboard.Dashboard4();
+                    
                     //dashboard.buildUI();
-                    new Dashboard3().setVisible(true);
+                    //new Dashboard4().setVisible(true);
                 } else {                                                        
                     JOptionPane.showMessageDialog(null, "incorrect credentials");
                 }

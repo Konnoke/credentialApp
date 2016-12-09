@@ -6,20 +6,8 @@
 package NavigationUI;
 
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
 
-import static java.awt.SystemColor.text;
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Arrays;
-//import java.util.Base64;
-import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,37 +15,58 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import java.io.*;
 
 /**
  *
  * @author Zarathustra
  */
-public class Login extends Register {
+public class Login2 extends Register {
     
-    private UserList userList;
 
     private static SecretKeySpec secretKey;
     private static byte[] key;
+    String user;
     
-    private ArrayList<String> usernames;
-    private ArrayList<String> passwords;
-
     
-    public boolean authenticate(String username, String password)   {
+    
+    
+    public void setUsername(String username)    {
+        user = username;
+    }
+    
+    public String getUsername()   {
+        return user;
+    }
+    
 
-        usernames = new ArrayList();
-        userList = new UserList();
-        usernames = userList.getUsernames();
-        passwords = new ArrayList();
-        passwords = userList.getValidPasswords();
+    public boolean authenticateTextFile (String username, String password)  {
         
-        for (int i = 0; i < usernames.size(); i++)   {
-            if (usernames.get(i).equals(username) && passwords.get(i).equals(password))   {
-                return true;
+        String fileName = username + ".txt";
+        String line = null;
+        
+        try {
+            
+            FileReader fr = new FileReader(fileName);
+            BufferedReader br = new BufferedReader(fr);
+            
+            while((line = br.readLine()) !=null)   {
+                if (line.contains(username) && line.contains(password))   {
+                    return true;
+                } else {
+                    return false;
+                }
             } 
-        }
+            
+
+            
+            System.out.println("Done");
+        } catch (IOException e)   {
+            e.printStackTrace();
+        } 
         return false;
     }
+    
     
 //    public void setKey(String myKey) 
 //    {
@@ -148,4 +157,5 @@ public class Login extends Register {
       }                      
         return false;
     }
+    
 }

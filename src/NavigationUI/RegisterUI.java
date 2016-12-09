@@ -7,12 +7,6 @@ package NavigationUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
-import java.security.Key;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -76,10 +70,10 @@ public class RegisterUI extends Register {
         registerButton.addActionListener(new ActionListener()      {
             @Override
             public void actionPerformed(ActionEvent b) {
-                Register register = new Register();
+                Register2 register = new Register2();
                 String user = userText.getText().trim();
                 String pass = passwordText.getText().trim();
-                register.AppendXML(user, pass);
+                register.textFile(user, pass);
                 regUI.dispose();
             }
                 

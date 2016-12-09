@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><User>
-<Account PasswordID="abc123" UserID="abc123"/><Account PasswordID="fuck" UserID="fuck"/><Account PasswordID="password" UserID="yib5063"/></User>
+
+<Account id="hassan" pass="hassan"/><Account id="bob" pass="bob"/>
+
+</User>
