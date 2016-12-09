@@ -11,6 +11,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,6 +50,10 @@ public class Dashboard4 extends LoginUI {
         final JButton buttonAdd = new JButton(" Add ");
         buttonAdd.setBounds(50, 325, 100, 20);
         buttonPanel.add(buttonAdd);
+        ///* Set up Generate Random Password Button
+        final JButton buttonRandom = new JButton("Generate Random Password");
+        buttonRandom.setBounds(40, 200, 200, 20);
+        buttonPanel.add(buttonRandom);        
 
 
         // Set up Exit button and its location
@@ -213,7 +218,26 @@ public class Dashboard4 extends LoginUI {
                 textPassword.setText("");
 
             }
-        });     
+        });    
+        
+        
+        buttonRandom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+                StringBuilder generatedString = new StringBuilder();
+                Random rnd = new Random();
+                while (generatedString.length() < 12) {
+                    int index = (int) (rnd.nextFloat() * CHARS.length());
+                    generatedString.append(CHARS.charAt(index));
+                }
+                String generatedStringStr = generatedString.toString();
+                textPassword.setText(generatedStringStr);
+            }
+        });
+        
+        
+        
 
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setTitle("Dashboard");
